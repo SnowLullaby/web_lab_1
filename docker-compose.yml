@@ -1,0 +1,16 @@
+services:
+  frontend:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf  # Подключите ваш конфиг
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+
+  backend:
+    image: web_lab_1  # Укажите ваш образ FastCGI
+    ports:
+      - "24001:24001"  # Открываем порт для FastCGI
+
